@@ -1,7 +1,7 @@
 <?php
 function printBanner(){
     echo '<div class="jumbotron text-center" style="border-radius: 0px; background-image: url(images/layout/banner.png); background-position: center center; margin-bottom: 0px">
-        <h1 style="color: white">Medivia Profile</h1>
+        <h1 style="color: white; font-family: Book Antiqua">Medivia Profile</h1>
     </div>';
 }
 

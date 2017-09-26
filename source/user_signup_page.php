@@ -33,9 +33,10 @@
                     printMenu("user_signup_page");
                 ?>
             </div>
-            <div class="row">
+            <div class="row"> <!-- Page Content -->
+
             </div>
-            <div class="row">
+            <div class="row"> <!-- Page Footer -->
             </div>
         </div>
 

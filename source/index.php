@@ -33,9 +33,9 @@
                     printMenu("index");
                 ?>
             </div>
-            <div class="row">
+            <div class="row"> <!-- Page Content -->
             </div>
-            <div class="row">
+            <div class="row"> <!-- Page Footer -->
             </div>
         </div>
 
