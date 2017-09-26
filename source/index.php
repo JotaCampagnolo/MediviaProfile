@@ -13,6 +13,11 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
+        <!-- Includes -->
+        <?php
+            include "layout_functions.php"
+        ?>
+
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -23,9 +28,10 @@
     <body>
         <div class="container-fluid">
             <div class="row"> <!-- Page Header and Menu -->
-                <div class="jumbotron text-center" style="border-radius: 0px; background-image: url(images/layout/banner.png); background-position: center center">
-                    <h1 style="color: white">Medivia Porfile</h1>
-                </div>
+                <?php
+                    printBanner();
+                    printMenu("index");
+                ?>
             </div>
             <div class="row">
             </div>
