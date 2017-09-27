@@ -15,7 +15,8 @@
 
         <!-- Includes -->
         <?php
-            include "functions/layout_functions.php"
+            include "functions/layout_functions.php";
+            include "functions/database_functions.php";
         ?>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -26,6 +27,10 @@
         <![endif]-->
     </head>
     <body>
+        <!-- Database Conection -->
+        <?php
+            $link = connectDatabase();
+        ?>
         <div class="container-fluid">
             <div class="row"> <!-- Page Header and Menu -->
                 <?php

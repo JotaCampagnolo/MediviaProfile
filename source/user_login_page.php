@@ -15,7 +15,8 @@
 
         <!-- Includes -->
         <?php
-            include "functions/layout_functions.php"
+            include "functions/layout_functions.php";
+            include "functions/database_functions.php";
         ?>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -26,6 +27,10 @@
         <![endif]-->
     </head>
     <body>
+        <!-- Database Conection -->
+        <?php
+            $link = connectDatabase();
+        ?>
         <div class="container-fluid">
             <div class="row"> <!-- Page Header and Menu -->
                 <?php
@@ -44,12 +49,12 @@
                     <form method="post" action="user_login_function.php">
                         <div class="form-group">
                             <span class="fa fa-user-circle-o" style="margin-right: 4px"></span><label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" aria-describedby="usernameField" maxlength="20" required placeholder="Enter your Username">
+                            <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameField" maxlength="20" required placeholder="Enter your Username">
                             <i><small id="usernameField" class="form-text text-muted">Enter your previously registered username.</small></i>
                         </div>
                         <div class="form-group">
                             <span class="fa fa-unlock-alt" style="margin-right: 4px"></span><label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" aria-describedby="passwordField" maxlength="20" required placeholder="**********">
+                            <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordField" maxlength="20" required placeholder="**********">
                             <i><small id="passwordField" class="form-text text-muted">Make sure to not share your password with nobody.</small></i>
                         </div>
                         <div class="form-group text-center">
