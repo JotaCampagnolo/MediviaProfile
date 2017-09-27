@@ -15,7 +15,7 @@
 
         <!-- Includes -->
         <?php
-            include "layout_functions.php"
+            include "functions/layout_functions.php"
         ?>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -34,10 +34,48 @@
                 ?>
             </div>
             <div class="row"> <!-- Page Content -->
-
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <span class="fa fa-user-plus" style="font-size: 60pt; margin-bottom: 10px"></span>
+                        <h1 style="font-family: Book Antiqua; font-size: 26pt; margin-top: -5px; margin-bottom: 25px">Registering an Account</h1>
+                    </div>
+                    <form method="post" action="user_signup_function.php">
+                        <div class="form-group">
+                            <span class="fa fa-user-circle-o" style="margin-right: 4px"></span><label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" aria-describedby="usernameField" maxlength="20" required placeholder="Enter your Username">
+                            <i><small id="usernameField" class="form-text text-muted">Choose your Username properly. It must have at least 8 caracters.</small></i>
+                        </div>
+                        <div class="form-group">
+                            <span class="fa fa-at" style="margin-right: 4px"></span><label for="email">E-mail</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailField" maxlength="50" required placeholder="Enter your E-mail">
+                            <i><small id="emailField" class="form-text text-muted">Make sure you type your e-mail correctly. It must have a maximum of 50 caracters.</small></i>
+                        </div>
+                        <div class="form-group">
+                            <span class="fa fa-unlock-alt" style="margin-right: 4px"></span><label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" aria-describedby="passwordField" maxlength="20" required placeholder="**********">
+                            <i><small id="passwordField" class="form-text text-muted">Make sure to not share your password with nobody. We recommend you not to use your game password.</small></i>
+                        </div>
+                        <div class="form-group">
+                            <span class="fa fa-unlock-alt" style="margin-right: 4px"></span><label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" aria-describedby="confirmPasswordField" maxlength="20" required placeholder="**********">
+                            <i><small id="confirmPasswordField" class="form-text text-muted">Please, repeat your password to continue.</small></i>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success" style="margin: 5px"><span class="fa fa-check" style="margin-right: 8px"></span>Submit Registration</button>
+                            <button type="reset" class="btn btn-warning" style="margin: 5px"><span class="fa fa-trash" style="margin-right: 8px"></span>Clear Registration</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-4">
+                </div>
             </div>
-            <div class="row"> <!-- Page Footer -->
+            <div class="row" style="margin-bottom: 30px"> <!-- Page pre-Footer -->
             </div>
+            <?php
+                printFooter();
+            ?>
         </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

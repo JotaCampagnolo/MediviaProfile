@@ -15,7 +15,7 @@
 
         <!-- Includes -->
         <?php
-            include "layout_functions.php"
+            include "functions/layout_functions.php"
         ?>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,8 +35,11 @@
             </div>
             <div class="row"> <!-- Page Content -->
             </div>
-            <div class="row"> <!-- Page Footer -->
+            <div class="row" style="margin-bottom: 30px"> <!-- Page pre-Footer -->
             </div>
+            <?php
+                printFooter();
+            ?>
         </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

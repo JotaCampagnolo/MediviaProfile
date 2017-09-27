@@ -15,7 +15,7 @@
 
         <!-- Includes -->
         <?php
-            include "layout_functions.php"
+            include "functions/layout_functions.php"
         ?>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -34,9 +34,41 @@
                 ?>
             </div>
             <div class="row"> <!-- Page Content -->
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <span class="fa fa-sign-in" style="font-size: 60pt; margin-bottom: 10px"></span>
+                        <h1 style="font-family: Book Antiqua; font-size: 26pt; margin-top: -5px; margin-bottom: 25px">Login to Account</h1>
+                    </div>
+                    <form method="post" action="user_login_function.php">
+                        <div class="form-group">
+                            <span class="fa fa-user-circle-o" style="margin-right: 4px"></span><label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" aria-describedby="usernameField" maxlength="20" required placeholder="Enter your Username">
+                            <i><small id="usernameField" class="form-text text-muted">Enter your previously registered username.</small></i>
+                        </div>
+                        <div class="form-group">
+                            <span class="fa fa-unlock-alt" style="margin-right: 4px"></span><label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" aria-describedby="passwordField" maxlength="20" required placeholder="**********">
+                            <i><small id="passwordField" class="form-text text-muted">Make sure to not share your password with nobody.</small></i>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success" style="margin: 5px"><span class="fa fa-sign-in" style="margin-right: 8px"></span>Login Account</button>
+                            <button type="reset" class="btn btn-warning" style="margin: 5px"><span class="fa fa-trash" style="margin-right: 8px"></span>Clear Fields</button>
+                        </div>
+                        <div class="text-center">
+                            <a href="user_signup_page.php">Register an Account</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-4">
+                </div>
             </div>
-            <div class="row"> <!-- Page Footer -->
+            <div class="row" style="margin-bottom: 30px"> <!-- Page pre-Footer -->
             </div>
+            <?php
+                printFooter();
+            ?>
         </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

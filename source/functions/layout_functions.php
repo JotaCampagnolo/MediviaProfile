@@ -1,6 +1,6 @@
 <?php
 function printBanner(){
-    echo '<div class="jumbotron text-center" style="border-radius: 0px; background-image: url(images/layout/banner.png); background-position: center center; margin-bottom: 0px">
+    echo '<div class="jumbotron text-center" style="border-radius: 0px; background-image: url(./images/layout/banner.png); background-position: center center; margin-bottom: 0px">
         <h1 style="color: white; font-family: Book Antiqua">Medivia Profile</h1>
     </div>';
 }
@@ -43,9 +43,9 @@ function printMenu($pageName){
                                 echo '<li><a href="user_login_page.php"><span class="fa fa-sign-in" style="margin-right: 8px"></span>Login</a></li>';
                             }
                             if($pageName == "user_signup_page"){
-                                echo '<li class="active"><a href="user_signup_page.php"><span class="fa fa-plus" style="margin-right: 8px"></span>Create Account</a></li>';
+                                echo '<li class="active"><a href="user_signup_page.php"><span class="fa fa-user-plus" style="margin-right: 8px"></span>Create Account</a></li>';
                             }else{
-                                echo '<li><a href="user_signup_page.php"><span class="fa fa-plus" style="margin-right: 8px"></span>Create Account</a></li>';
+                                echo '<li><a href="user_signup_page.php"><span class="fa fa-user-plus" style="margin-right: 8px"></span>Create Account</a></li>';
                             }
                         echo '</ul>
                     </li>
@@ -53,5 +53,13 @@ function printMenu($pageName){
             </div><!-- /.navbar-collapse -->
         </div> <!-- /container-fluid -->
     </nav> <!-- /navbar-inverse -->';
+}
+
+function printFooter(){
+    echo '<div class="footer navbar-fixed-bottom text-center" style="background-color: #ededed">
+        <div style="margin: 5px">
+            <span class="fa fa-github" style="margin-right: 8px; font-size: 12pt"></span><i>Designed and Developed by <b>Derlexy</b></i>
+        </div>
+    </div>';
 }
 ?>
