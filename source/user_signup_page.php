@@ -29,6 +29,7 @@
     <body>
         <!-- Database Conection -->
         <?php
+            session_start();
             $link = connectDatabase();
         ?>
         <div class="container-fluid">
@@ -46,6 +47,29 @@
                         <span class="fa fa-user-plus" style="font-size: 60pt; margin-bottom: 10px"></span>
                         <h1 style="font-family: Book Antiqua; font-size: 26pt; margin-top: -5px; margin-bottom: 25px">Registering an Account</h1>
                     </div>
+                    <?php
+                    // Duplicated Username error:
+                    if(isset($_SESSION["duplicatedUsername"])){
+                        echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Username Error:</strong> The username <i>' . $_SESSION["duplicatedUsername"] . '</i> was already taken!
+                        </div>';
+                    }
+                    // Duplicated E-mail error:
+                    if(isset($_SESSION["duplicatedEmail"])){
+                        echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>E-mail Error:</strong> The email <i>' . $_SESSION["duplicatedEmail"] . '</i> was already in use!
+                        </div>';
+                    }
+                    // Password not match warning:
+                    if(isset($_SESSION["passwordNotMatch"])){
+                        echo '<div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>E-mail Error:</strong> The password confirmation do not match!
+                        </div>';
+                    }
+                    ?>
                     <form action="functions/user_signup_function.php" method="post">
                         <div class="form-group">
                             <span class="fa fa-user-circle-o" style="margin-right: 4px"></span><label for="username">Username</label>
@@ -82,7 +106,11 @@
                 printFooter();
             ?>
         </div>
-
+        <?php
+            unset($_SESSION["duplicatedUsername"]);
+            unset($_SESSION["duplicatedEmail"]);
+            unset($_SESSION["passwordNotMatch"]);
+        ?>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

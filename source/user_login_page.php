@@ -29,6 +29,7 @@
     <body>
         <!-- Database Conection -->
         <?php
+            session_start();
             $link = connectDatabase();
         ?>
         <div class="container-fluid">
@@ -46,6 +47,15 @@
                         <span class="fa fa-sign-in" style="font-size: 60pt; margin-bottom: 10px"></span>
                         <h1 style="font-family: Book Antiqua; font-size: 26pt; margin-top: -5px; margin-bottom: 25px">Login to Account</h1>
                     </div>
+                    <?php
+                        // Registration success message:
+                        if(isset($_SESSION["registrationSuccess"])){
+                            echo '<div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>Congratulations:</strong> <i>' . $_SESSION["registrationSuccess"] . '</i> account has been sucessful created!
+                            </div>';
+                        }
+                    ?>
                     <form method="post" action="user_login_function.php">
                         <div class="form-group">
                             <span class="fa fa-user-circle-o" style="margin-right: 4px"></span><label for="username">Username</label>
@@ -75,7 +85,9 @@
                 printFooter();
             ?>
         </div>
-
+        <?php
+            unset($_SESSION["registrationSuccess"]);
+        ?>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
