@@ -27,16 +27,22 @@
         <![endif]-->
     </head>
     <body>
-        <!-- Database Conection -->
+        <!-- Database and Session Conection -->
         <?php
             session_start();
             $link = connectDatabase();
+        ?>
+        <!-- Verify the SESSION Status -->
+        <?php
+            if(isset($_SESSION["userUID"])){
+                header("Location: user_profile_page.php");
+            }
         ?>
         <div class="container-fluid">
             <div class="row"> <!-- Page Header and Menu -->
                 <?php
                     printBanner();
-                    printMenu("user_signup_page");
+                    printGuestMenu("user_signup_page");
                 ?>
             </div>
             <div class="row"> <!-- Page Content -->
@@ -73,22 +79,22 @@
                     <form action="functions/user_signup_function.php" method="post">
                         <div class="form-group">
                             <span class="fa fa-user-circle-o" style="margin-right: 4px"></span><label for="username">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameField" maxlength="20" required placeholder="Enter your Username">
+                            <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameField" maxlength="20" minlength="3" required placeholder="Enter your Username">
                             <i><small id="usernameField" class="form-text text-muted">Choose your Username properly. It must have at least 8 caracters.</small></i>
                         </div>
                         <div class="form-group">
                             <span class="fa fa-at" style="margin-right: 4px"></span><label for="email">E-mail</label>
-                            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailField" maxlength="50" required placeholder="Enter your E-mail">
+                            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailField" maxlength="50" minlength="10" required placeholder="email@domain.com">
                             <i><small id="emailField" class="form-text text-muted">Make sure you type your e-mail correctly. It must have a maximum of 50 caracters.</small></i>
                         </div>
                         <div class="form-group">
                             <span class="fa fa-unlock-alt" style="margin-right: 4px"></span><label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordField" maxlength="20" required placeholder="**********">
+                            <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordField" maxlength="20" minlength="6" required placeholder="**********">
                             <i><small id="passwordField" class="form-text text-muted">Make sure to not share your password with nobody. We recommend you not to use your game password.</small></i>
                         </div>
                         <div class="form-group">
                             <span class="fa fa-unlock-alt" style="margin-right: 4px"></span><label for="confirmPassword">Confirm Password</label>
-                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" aria-describedby="confirmPasswordField" maxlength="20" required placeholder="**********">
+                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" aria-describedby="confirmPasswordField" maxlength="20" minlength="6" required placeholder="**********">
                             <i><small id="confirmPasswordField" class="form-text text-muted">Please, repeat your password to continue.</small></i>
                         </div>
                         <div class="form-group text-center">

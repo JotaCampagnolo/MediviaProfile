@@ -27,16 +27,22 @@
         <![endif]-->
     </head>
     <body>
-        <!-- Database Conection -->
+        <!-- Database and Session Conection -->
         <?php
             session_start();
             $link = connectDatabase();
+        ?>
+        <!-- Verify the SESSION Status -->
+        <?php
+            if(isset($_SESSION["userUID"])){
+                header("Location: user_profile_page.php");
+            }
         ?>
         <div class="container-fluid">
             <div class="row"> <!-- Page Header and Menu -->
                 <?php
                     printBanner();
-                    printMenu("user_login_page");
+                    printGuestMenu("user_login_page");
                 ?>
             </div>
             <div class="row"> <!-- Page Content -->
@@ -55,16 +61,23 @@
                                 <strong>Congratulations:</strong> <i>' . $_SESSION["registrationSuccess"] . '</i> account has been sucessful created!
                             </div>';
                         }
+                        // User and Password do not match:
+                        if(isset($_SESSION["userPasswordNotMatch"])){
+                            echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>Login Error!</strong> You typed your username and/or password wrongly! If you dont have an account, use the link below to register.
+                            </div>';
+                        }
                     ?>
-                    <form method="post" action="user_login_function.php">
+                    <form action="functions/user_login_functions.php" method="post">
                         <div class="form-group">
                             <span class="fa fa-user-circle-o" style="margin-right: 4px"></span><label for="username">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameField" maxlength="20" required placeholder="Enter your Username">
+                            <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameField" maxlength="20" minlength="3" required placeholder="Enter your Username">
                             <i><small id="usernameField" class="form-text text-muted">Enter your previously registered username.</small></i>
                         </div>
                         <div class="form-group">
                             <span class="fa fa-unlock-alt" style="margin-right: 4px"></span><label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordField" maxlength="20" required placeholder="**********">
+                            <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordField" maxlength="20" minlength="6" required placeholder="**********">
                             <i><small id="passwordField" class="form-text text-muted">Make sure to not share your password with nobody.</small></i>
                         </div>
                         <div class="form-group text-center">
@@ -88,6 +101,7 @@
         <?php
             // Destroying SESSION variables:
             unset($_SESSION["registrationSuccess"]);
+            unset($_SESSION["userPasswordNotMatch"]);
         ?>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

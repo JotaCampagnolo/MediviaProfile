@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>News</title>
+        <title>Profile</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -27,23 +27,31 @@
         <![endif]-->
     </head>
     <body>
-        <!-- Database Conection -->
+        <!-- Database and Session Conection -->
         <?php
             session_start();
             $link = connectDatabase();
+        ?>
+        <!-- Verify the SESSION Status -->
+        <?php
+            if(!(isset($_SESSION["userUID"]))){
+                header("Location: user_login_page.php");
+            }
         ?>
         <div class="container-fluid">
             <div class="row"> <!-- Page Header and Menu -->
                 <?php
                     printBanner();
-                    if(isset($_SESSION["userUID"])){
-                        printUserMenu("index");
-                    }else{
-                        printGuestMenu("index");
-                    }
+                    printUserMenu("user_profile_page");
                 ?>
             </div>
             <div class="row"> <!-- Page Content -->
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                </div>
             </div>
             <div class="row" style="margin-bottom: 30px"> <!-- Page pre-Footer -->
             </div>
@@ -51,7 +59,9 @@
                 printFooter();
             ?>
         </div>
-
+        <?php
+            // Destroying SESSION variables:
+        ?>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
