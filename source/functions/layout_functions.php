@@ -95,7 +95,9 @@
                                 }else{
                                     echo '<li><a href="user_login_page.php"><span class="fa fa-user-circle-o" style="margin-right: 8px"></span>Profile</a></li>';
                                 }
-                            echo '</ul>
+                                echo '<li role="separator" class="divider"></li>
+                                <li><a href="functions/user_logout_functions.php"><span class="fa fa-sign-out" style="margin-right: 8px"></span>Logout</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
