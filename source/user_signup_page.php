@@ -107,6 +107,7 @@
             ?>
         </div>
         <?php
+            // Destroying SESSION variables:
             unset($_SESSION["duplicatedUsername"]);
             unset($_SESSION["duplicatedEmail"]);
             unset($_SESSION["passwordNotMatch"]);

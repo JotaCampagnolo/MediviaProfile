@@ -86,6 +86,7 @@
             ?>
         </div>
         <?php
+            // Destroying SESSION variables:
             unset($_SESSION["registrationSuccess"]);
         ?>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
