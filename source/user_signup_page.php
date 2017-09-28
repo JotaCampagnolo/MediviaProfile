@@ -76,7 +76,7 @@
                         </div>';
                     }
                     ?>
-                    <form action="functions/user_signup_function.php" method="post">
+                    <form action="functions/user_signup_functions.php" method="post">
                         <div class="form-group">
                             <span class="fa fa-user-circle-o" style="margin-right: 4px"></span><label for="username">Username</label>
                             <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameField" maxlength="20" minlength="3" required placeholder="Enter your Username">

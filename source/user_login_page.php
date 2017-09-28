@@ -68,6 +68,13 @@
                                 <strong>Login Error!</strong> You typed your username and/or password wrongly! If you dont have an account, use the link below to register.
                             </div>';
                         }
+                        // User Logout:
+                        if(isset($_SESSION["userLogout"])){
+                            echo '<div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>Logout!</strong> You has successfully logged out.
+                            </div>';
+                        }
                     ?>
                     <form action="functions/user_login_functions.php" method="post">
                         <div class="form-group">
@@ -102,6 +109,7 @@
             // Destroying SESSION variables:
             unset($_SESSION["registrationSuccess"]);
             unset($_SESSION["userPasswordNotMatch"]);
+            unset($_SESSION["userLogout"]);
         ?>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
