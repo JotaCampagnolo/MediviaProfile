@@ -46,11 +46,19 @@
                 ?>
             </div>
             <div class="row"> <!-- Page Content -->
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-right" style="background: url(images/layout/profile_background.png) no-repeat center center; height: 150px;">
+                            <img class="img-circle img-thumbnail" src="images/users_avatars/default.png" width="125px" height="125px" style="margin-top: 40px">
+                        </div>
+                        <div class="panel-heading"><b>Information</b></div>
+                        <div class="panel-body">Panel Content</div>
+                        <div class="panel-footer">Panel Footer</div>
+                    </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 </div>
             </div>
             <div class="row" style="margin-bottom: 30px"> <!-- Page pre-Footer -->
