@@ -80,8 +80,12 @@
                             </blockquote>
                         </div>
                         <div class="panel-footer text-right">
-                            <button type="button" class="btn btn-primary" href"#" style="margin: 5px"><span class="fa fa-pencil" style="margin-right: 6px"></span>Edit Profile</button>
-                            <button type="button" class="btn btn-danger" href"functions/user_logout_functions.php" style="margin: 5px"><span class="fa fa-sign-out" style="margin-right: 6px"></span>Logout</button>
+                            <a class="btn btn-primary" href="user_edit_profile_page.php" type="button" style="margin: 5px">
+                                <span class="fa fa-pencil" style="margin-right: 6px"></span>Edit Profile
+                            </a>
+                            <a class="btn btn-danger" href="functions/user_logout_functions.php" type="button" style="margin: 5px">
+                                <span class="fa fa-sign-out" style="margin-right: 6px"></span>Logout
+                            </a>
                         </div>
                     </div>
                     <div class="panel panel-default">
