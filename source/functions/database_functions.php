@@ -14,32 +14,4 @@ function connectDatabase(){
     }
     return $link;
 }
-
-// Estrutura de Dados para Usuários:
-class User($userUID){
-    public $uid;
-    public $username;
-    public $email;
-    public $password;
-    public $comment;
-    public $comment_owner;
-    public $avatar_image;
-    public $vocation_uid;
-    public $world_uid;
-    public $country_uid;
-
-    public function getVocation(){
-
-    }
-    public function getWorld(){
-
-    }
-    public function getCountry(){
-
-    }
-}
-
-function getUser($userUID){
-
-}
 ?>
