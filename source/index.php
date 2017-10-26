@@ -17,6 +17,7 @@
         <?php
             include "functions/layout_functions.php";
             include "functions/database_functions.php";
+            include "classes/classes.php";
         ?>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -44,6 +45,17 @@
                 ?>
             </div>
             <div class="row"> <!-- Page Content -->
+                <?php
+                    // Tests:
+                    $c1 = new Country($link, 112);
+                    $c1->printClass();
+                    $w1 = new World($link, 3);
+                    $w1->printClass();
+                    $v1 = new Vocation($link, 6);
+                    $v1->printClass();
+                    $u1 = new User($link, 1);
+                    $u1->printClass();
+                ?>
             </div>
             <div class="row" style="margin-bottom: 30px"> <!-- Page pre-Footer -->
             </div>

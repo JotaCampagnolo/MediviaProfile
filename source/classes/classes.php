@@ -1,6 +1,4 @@
 <?php
-    // Includes:
-    include "../functions/database_functions.php";
     // Classes:
         // Country:
         class Country{
@@ -9,9 +7,8 @@
             var $name;
             var $flagImage;
             // Constructors:
-            function __construct($uid){
+            function __construct($link, $uid){
                 $this->uid = $uid;
-                $link = connectDatabase();
                 $resultQuery = mysqli_query($link, "SELECT * FROM countries WHERE uid = '$uid'");
                 $row = mysqli_fetch_array($resultQuery);
                 $this->name = $row[1];
@@ -37,9 +34,8 @@
             var $manaRegen;
             var $hpRegen;
             // Constructors:
-            function __construct($uid){
+            function __construct($link, $uid){
                 $this->uid = $uid;
-                $link = connectDatabase();
                 $resultQuery = mysqli_query($link, "SELECT * FROM vocations WHERE uid = '$uid'");
                 $row = mysqli_fetch_array($resultQuery);
                 $this->name = $row[1];
@@ -75,9 +71,8 @@
             var $magicRate;
             var $lootRate;
             // Constructors:
-            function __construct($uid){
+            function __construct($link, $uid){
                 $this->uid = $uid;
-                $link = connectDatabase();
                 $resultQuery = mysqli_query($link, "SELECT * FROM worlds WHERE uid = '$uid'");
                 $row = mysqli_fetch_array($resultQuery);
                 $this->name = $row[1];
@@ -107,16 +102,45 @@
         // User:
         class User{
             // Attributes:
-
+            var $uid;
+            var $username;
+            var $email;
+            var $password;
+            var $comment;
+            var $comment_owner;
+            var $avatar_image;
+            var $vocation;
+            var $world;
+            var $country;
             // Constructors:
-
+            function __construct($link, $uid){
+                $this->uid = $uid;
+                $resultQuery = mysqli_query($link, "SELECT * FROM users WHERE uid = '$uid'");
+                $row = mysqli_fetch_array($resultQuery);
+                $this->username = $row[1];
+                $this->email = $row[2];
+                $this->password = $row[3];
+                $this->comment = $row[4];
+                $this->comment_owner = $row[5];
+                $this->avatar_image = $row[6] . ".png";
+                $this->vocation = new Vocation($link, $row[7]);
+                $this->world = new World($link, $row[8]);
+                $this->country = new Country($link, $row[9]);
+                return;
+            }
             // Methods:
-        }        
-    // Tests:
-    $c1 = new Country(112);
-    $c1->printClass();
-    $w1 = new World(3);
-    $w1->printClass();
-    $v1 = new Vocation(6);
-    $v1->printClass();
+            function printClass(){
+                echo "UID: " . $this->uid . '<br>';
+                echo "Username: " . $this->username . '<br>';
+                echo "Email: " . $this->email . '<br>';
+                echo "Password: " . $this->password . '<br>';
+                echo "Comment: " . $this->comment . '<br>';
+                echo "Comment Owner: " . $this->comment_owner . '<br>';
+                echo "Avatar Image: " . $this->avatar_image . '<br>';
+                echo "Vocation: " . $this->vocation->name . '<br>';
+                echo "World: " . $this->world->name . '<br>';
+                echo "Country: " . $this->country->name . '<br><br>';
+                return;
+            }
+        }
 ?>
