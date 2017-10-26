@@ -17,6 +17,7 @@
         <?php
             include "functions/layout_functions.php";
             include "functions/database_functions.php";
+            include "classes/classes.php";
         ?>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -37,6 +38,9 @@
             if(!(isset($_SESSION["userUID"]))){
                 header("Location: user_login_page.php");
             }
+            else{
+                $user = new User($link, $_SESSION["userUID"]);
+            }
         ?>
         <div class="container-fluid">
             <div class="row"> <!-- Page Header and Menu -->
@@ -50,38 +54,42 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading text-right" style="background: url(images/layout/profile_background.png) no-repeat center center; height: 150px;">
-                            <img class="img-circle img-thumbnail" src="images/users_avatars/derlexy.png" width="125px" height="125px" style="margin-top: 40px">
-                        </div>
+                        <?php
+                        echo '<div class="panel-heading text-right" style="background: url(images/layout/profile_background.png) no-repeat center center; height: 150px;">
+                            <img class="img-circle img-thumbnail" src="images/users_avatars/' . $user->avatar_image . '" width="125px" height="125px" style="margin-top: 40px">
+                        </div>';
+                        ?>
                         <div class="panel-heading">
                             <span class="fa fa-user-circle-o" style="margin-right: 8px"></span><b>Profile</b>
                         </div>
                         <div class="panel-body">
-                            <h4 style="margin: 0px"><small><span class="fa fa-user-circle-o" style="margin-right: 4px; font-size: 10pt; color: #a2a2a2"></span>Username</small></h4>
-                            <h4 style="font-family: Book Antiqua; font-size: 18pt; margin: 0px">Derlexy</h4>
+                            <?php
+                            echo '<h4 style="margin: 0px"><small><span class="fa fa-user-circle-o" style="margin-right: 4px; font-size: 10pt; color: #a2a2a2"></span>Username</small></h4>
+                            <h4 style="font-family: Book Antiqua; font-size: 18pt; margin: 0px">' . $user->username . '</h4>
                             <hr style="margin: 12px 0px 12px 0px">
                             <h4 style="margin: 0px"><small><span class="fa fa-at" style="margin-right: 4px; font-size: 10pt; color: #a2a2a2"></span>Email</small></h4>
-                            <h4 style="font-family: Book Antiqua; font-size: 16pt; margin: 0px"><i>jota.campagnolo@gmail.com</i></h4>
+                            <h4 style="font-family: Book Antiqua; font-size: 16pt; margin: 0px"><i>' . $user->email . '</i></h4>
                             <hr style="margin: 12px 0px 12px 0px">
                             <h4 style="margin: 0px"><small><span class="fa fa-globe" style="margin-right: 4px; font-size: 10pt; color: #a2a2a2"></span>Location</small></h4>
-                            <h4 style="font-family: Book Antiqua; font-size: 18pt; margin: 0px">Brazil</h4>
-                            <img class="img" src="images/flags/brazil.png" style="margin-top: 10px">
+                            <h4 style="font-family: Book Antiqua; font-size: 18pt; margin: 0px">' . $user->country->name . '</h4>
+                            <img class="img" src="images/flags/' . $user->country->flagImage . '" style="margin-top: 10px">
                             <hr style="margin: 12px 0px 12px 0px">
                             <h4 style="margin: 0px"><small><span class="fa fa-street-view" style="margin-right: 4px; font-size: 10pt; color: #a2a2a2"></span>Main World</small></h4>
-                            <h4 style="font-family: Book Antiqua; font-size: 18pt; margin: 0px">Spectrum</h4>
+                            <h4 style="font-family: Book Antiqua; font-size: 18pt; margin: 0px">' . $user->world->name . '</h4>
                             <hr style="margin: 12px 0px 12px 0px">
                             <h4 style="margin: 0px"><small><span class="fa fa-star" style="margin-right: 4px; font-size: 10pt; color: #a2a2a2"></span>Favorite Vocation</small></h4>
-                            <h4 style="font-family: Book Antiqua; font-size: 18pt; margin: 0px">Royal Paladin</h4>
+                            <h4 style="font-family: Book Antiqua; font-size: 18pt; margin: 0px">' . $user->vocation->name . '</h4>
                             <hr style="margin: 12px 0px 12px 0px">
                             <h4 style="margin: 0px"><small><span class="fa fa-commenting-o" style="margin-right: 4px; font-size: 10pt; color: #a2a2a2"></span>Comment</small></h4>
                             <blockquote style="margin: 10px 0px 0px 0px">
-                                <h4 style="font-family: Book Antiqua; font-size: 16pt; margin: 0px"><i>Hello guys. Im a neutral and RPG player.</i></h4>
-                                <footer>Derlexy</footer>
-                            </blockquote>
+                                <h4 style="font-family: Book Antiqua; font-size: 16pt; margin: 0px"><i>' . $user->comment . '</i></h4>
+                                <footer>' . $user->comment_owner . '</footer>
+                            </blockquote>';
+                            ?>
                         </div>
                         <div class="panel-footer text-right">
                             <a class="btn btn-primary" href="user_edit_profile_page.php" type="button" style="margin: 5px">
-                                <span class="fa fa-pencil" style="margin-right: 6px"></span>Edit Profile
+                                <span class="fa fa-pencil-square-o" style="margin-right: 6px"></span>Edit Profile
                             </a>
                             <a class="btn btn-danger" href="functions/user_logout_functions.php" type="button" style="margin: 5px">
                                 <span class="fa fa-sign-out" style="margin-right: 6px"></span>Logout

@@ -27,6 +27,7 @@
         class Vocation{
             // Attributes:
             var $uid;
+            var $class;
             var $name;
             var $manaGain;
             var $hpGain;
@@ -38,12 +39,13 @@
                 $this->uid = $uid;
                 $resultQuery = mysqli_query($link, "SELECT * FROM vocations WHERE uid = '$uid'");
                 $row = mysqli_fetch_array($resultQuery);
-                $this->name = $row[1];
-                $this->manaGain = $row[2];
-                $this->hpGain = $row[3];
-                $this->capGain = $row[4];
-                $this->manaRegen = $row[5];
-                $this->hpRegen = $row[6];
+                $this->class = $row[1];
+                $this->name = $row[2];
+                $this->manaGain = $row[3];
+                $this->hpGain = $row[4];
+                $this->capGain = $row[5];
+                $this->manaRegen = $row[6];
+                $this->hpRegen = $row[7];
                 return;
             }
             // Methods:

@@ -83,7 +83,7 @@
                     echo '</ul>
                     <ul class="nav navbar-nav navbar-right">';
                         // Menu: User Account:
-                        if($pageName == "user_profile_page"){
+                        if($pageName == "user_profile_page" || $pageName == "user_edit_profile_page"){
                             echo '<li class="dropdown active">';
                         }else{
                             echo '<li class="dropdown">';
@@ -93,7 +93,12 @@
                                 if($pageName == "user_profile_page"){
                                     echo '<li class="active"><a href="user_profile_page.php"><span class="fa fa-user-circle-o" style="margin-right: 8px"></span>Profile</a></li>';
                                 }else{
-                                    echo '<li><a href="user_login_page.php"><span class="fa fa-user-circle-o" style="margin-right: 8px"></span>Profile</a></li>';
+                                    echo '<li><a href="user_profile_page.php"><span class="fa fa-user-circle-o" style="margin-right: 8px"></span>Profile</a></li>';
+                                }
+                                if($pageName == "user_edit_profile_page"){
+                                    echo '<li class="active"><a href="user_edit_profile_page.php"><span class="fa fa-pencil-square-o" style="margin-right: 8px"></span>Edit Profile</a></li>';
+                                }else{
+                                    echo '<li><a href="user_edit_profile_page.php"><span class="fa fa-pencil-square-o" style="margin-right: 8px"></span>Edit Profile</a></li>';
                                 }
                                 echo '<li role="separator" class="divider"></li>
                                 <li><a href="functions/user_logout_functions.php"><span class="fa fa-sign-out" style="margin-right: 8px"></span>Logout</a></li>
