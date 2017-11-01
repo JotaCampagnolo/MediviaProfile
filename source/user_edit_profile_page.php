@@ -109,11 +109,52 @@
                             <i><small id="avatar_imageField" class="form-text text-muted">Upload your avatar image.</small></i>
                         </div>
                         <div class="form-group">
+                            <span class="fa fa-globe" style="margin-right: 4px"></span><label for="location">Location</label>
+                            <select class="form-control selectpicker show-tick" data-live-search="true" data-size="10">
+                                <?php
+                                    $resultQuery = mysqli_query($link, "SELECT * FROM countries");
+                                    while ($row = mysqli_fetch_array($resultQuery)){
+                                        echo '<option data-content="<img class=\'img\' src=\'images/flags/' . $row[2] . '.png\' style=\'margin: 2px 5px 3px 0px; width: 20px; image-rendering: optimizeSpeed; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: pixelated; image-rendering: optimize-contrast; -ms-interpolation-mode: nearest-neighbor\'>' . $row[1] . '">' . $row[1] . '</option>';
+                                    }
+                                ?>
+                            </select>
+                            <i><small id="locationField" class="form-text text-muted">Select your real life location.</small></i>
+                        </div>
+                        <div class="form-group">
+                            <span class="fa fa-street-view" style="margin-right: 4px"></span><label for="world">Main World</label>
+                            <select class="form-control selectpicker show-tick" data-live-search="true" data-size="8">
+                                <optgroup label="Not Defined">
+                                    <?php
+                                        $resultQuery = mysqli_query($link, "SELECT * FROM worlds WHERE location = 'Not Defined'");
+                                        while ($row = mysqli_fetch_array($resultQuery)){
+                                            echo '<option>' . $row[1] . '</option>';
+                                        }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="Europe">
+                                    <?php
+                                        $resultQuery = mysqli_query($link, "SELECT * FROM worlds WHERE location = 'Europe'");
+                                        while ($row = mysqli_fetch_array($resultQuery)){
+                                            echo '<option>' . $row[1] . '</option>';
+                                        }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="North America">
+                                    <?php
+                                        $resultQuery = mysqli_query($link, "SELECT * FROM worlds WHERE location = 'North America'");
+                                        while ($row = mysqli_fetch_array($resultQuery)){
+                                            echo '<option>' . $row[1] . '</option>';
+                                        }
+                                    ?>
+                                </optgroup>
+                            </select>
+                            <i><small id="vocationField" class="form-text text-muted">Select your main world.</small></i>
+                        </div>
+                        <div class="form-group">
                             <span class="fa fa-star" style="margin-right: 4px"></span><label for="vocation">Favorite Vocation</label>
-                            <select class="form-control selectpicker show-tick" data-live-search="true">
+                            <select class="form-control selectpicker show-tick" data-live-search="true" data-size="10">
                                 <optgroup label="No Vocation">
                                     <?php
-                                        $group = "No Vocation";
                                         $resultQuery = mysqli_query($link, "SELECT uid, class, name FROM vocations WHERE class = 'No Vocation'");
                                         while ($row = mysqli_fetch_array($resultQuery)){
                                             echo '<option>' . $row[2] . '</option>';
@@ -122,7 +163,6 @@
                                 </optgroup>
                                 <optgroup label="Not Promoted">
                                     <?php
-                                        $group = "No Vocation";
                                         $resultQuery = mysqli_query($link, "SELECT uid, class, name FROM vocations WHERE class = 'Not Promoted'");
                                         while ($row = mysqli_fetch_array($resultQuery)){
                                             echo '<option>' . $row[2] . '</option>';
@@ -131,7 +171,6 @@
                                 </optgroup>
                                 <optgroup label="Promoted">
                                     <?php
-                                        $group = "No Vocation";
                                         $resultQuery = mysqli_query($link, "SELECT uid, class, name FROM vocations WHERE class = 'Promoted'");
                                         while ($row = mysqli_fetch_array($resultQuery)){
                                             echo '<option>' . $row[2] . '</option>';
@@ -139,7 +178,7 @@
                                     ?>
                                 </optgroup>
                             </select>
-                            <i><small id="avatar_imageField" class="form-text text-muted">Select your favorite vocation.</small></i>
+                            <i><small id="vocationField" class="form-text text-muted">Select your favorite vocation.</small></i>
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-success" style="margin: 5px"><span class="fa fa-check" style="margin-right: 8px"></span>Confirm Changes</button>
