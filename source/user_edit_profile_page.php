@@ -83,12 +83,16 @@
                     <form action="functions/user_signup_functions.php" method="post">
                         <div class="form-group">
                             <span class="fa fa-user-circle-o" style="margin-right: 4px"></span><label for="username">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameField" maxlength="20" minlength="3" disabled placeholder="Enter your Username">
-                            <i><small id="usernameField" class="form-text text-muted">You can't change your username.</small></i>
+                            <?php
+                                echo '<input type="text" class="form-control" name="username" id="username" aria-describedby="usernameField" maxlength="20" minlength="3" disabled placeholder="' . $user->username . '"/>';
+                            ?>
+                            <i><small id="usernameField" class="form-text text-muted">You cant change your username.</small></i>
                         </div>
                         <div class="form-group">
                             <span class="fa fa-at" style="margin-right: 4px"></span><label for="email">E-mail</label>
-                            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailField" maxlength="50" minlength="10" required placeholder="email@domain.com">
+                            <?php
+                                echo '<input type="email" class="form-control" name="email" id="email" aria-describedby="emailField" maxlength="50" minlength="10" required value="' . $user->email . '">'
+                            ?>
                             <i><small id="emailField" class="form-text text-muted">Make sure you type your new e-mail correctly. It must have a maximum of 50 caracters.</small></i>
                         </div>
                         <div class="form-group">
@@ -98,15 +102,25 @@
                         </div>
                         <div class="form-group">
                             <span class="fa fa-commenting-o" style="margin-right: 4px"></span><label for="comment">Comment</label>
-                            <textarea type="text" class="form-control" name="comment" id="comment" aria-describedby="commentField" maxlength="150" rows="3" style="resize:none" placeholder="Type your comment here."></textarea>
+                            <?php
+                                if($user->comment){
+                                    echo '<textarea type="text" class="form-control" name="comment" id="comment" aria-describedby="commentField" maxlength="150" rows="3" style="resize:none">' . $user->comment . '</textarea>';
+                                }
+                                else{
+                                    echo '<textarea type="text" class="form-control" name="comment" id="comment" aria-describedby="commentField" maxlength="150" rows="3" style="resize:none" placeholder="Type your comment here."></textarea>';
+                                }
+                            ?>
+                            <i><small id="commentField" class="form-text text-muted">If you havent anything to say, just leave this field empty.</small></i><br>
                             <span class="fa fa-commenting-o" style="margin: 10px 4px 10px 0px"></span><label for="comment">Comment Owner</label>
-                            <input type="text" class="form-control" name="comment_owner" id="comment_owner" aria-describedby="comment_ownerField" maxlength="40" minlength="3" placeholder="Comment Author">
-                            <i><small id="commentField" class="form-text text-muted">Make sure to not share your password with nobody. We recommend you not to use your game password.</small></i>
-                        </div>
-                        <div class="form-group">
-                            <span class="fa fa-picture-o" style="margin-right: 4px"></span><label for="avatar_image">Avatar Image</label>
-                            <input type="text" class="form-control" name="avatar_image" id="avatar_image" aria-describedby="avatar_imageField" maxlength="20" minlength="3" disabled placeholder="Upload your Image">
-                            <i><small id="avatar_imageField" class="form-text text-muted">Upload your avatar image.</small></i>
+                            <?php
+                                if($user->comment_owner){
+                                    echo '<input type="text" class="form-control" name="comment_owner" id="comment_owner" aria-describedby="comment_ownerField" maxlength="40" minlength="3" value="' . $user->comment_owner . '">';
+                                }
+                                else{
+                                    echo '<input type="text" class="form-control" name="comment_owner" id="comment_owner" aria-describedby="comment_ownerField" maxlength="40" minlength="3" placeholder="Comment Author">';
+                                }
+                            ?>
+                            <i><small id="commentField" class="form-text text-muted">Use this field to quote your comment owner.</small></i>
                         </div>
                         <div class="form-group">
                             <span class="fa fa-globe" style="margin-right: 4px"></span><label for="location">Location</label>
@@ -114,7 +128,12 @@
                                 <?php
                                     $resultQuery = mysqli_query($link, "SELECT * FROM countries");
                                     while ($row = mysqli_fetch_array($resultQuery)){
-                                        echo '<option data-content="<img class=\'img\' src=\'images/flags/' . $row[2] . '.png\' style=\'margin: 2px 5px 3px 0px; width: 20px; image-rendering: optimizeSpeed; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: pixelated; image-rendering: optimize-contrast; -ms-interpolation-mode: nearest-neighbor\'>' . $row[1] . '">' . $row[1] . '</option>';
+                                        if($row[0] == $user->country->uid){
+                                            echo '<option selected data-content="<img class=\'img\' src=\'images/flags/' . $row[2] . '.png\' value=\'' . $row[0] . '\' selected style=\'margin: 2px 5px 3px 0px; width: 20px; image-rendering: optimizeSpeed; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: pixelated; image-rendering: optimize-contrast; -ms-interpolation-mode: nearest-neighbor\'>' . $row[1] . '">' . $row[1] . '</option>';
+                                        }
+                                        else{
+                                            echo '<option data-content="<img class=\'img\' src=\'images/flags/' . $row[2] . '.png\' value=\'' . $row[0] . '\' style=\'margin: 2px 5px 3px 0px; width: 20px; image-rendering: optimizeSpeed; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: pixelated; image-rendering: optimize-contrast; -ms-interpolation-mode: nearest-neighbor\'>' . $row[1] . '">' . $row[1] . '</option>';
+                                        }
                                     }
                                 ?>
                             </select>
@@ -127,7 +146,12 @@
                                     <?php
                                         $resultQuery = mysqli_query($link, "SELECT * FROM worlds WHERE location = 'Not Defined'");
                                         while ($row = mysqli_fetch_array($resultQuery)){
-                                            echo '<option>' . $row[1] . '</option>';
+                                            if($row[0] == $user->world->uid){
+                                                echo '<option selected>' . $row[1] . '</option>';
+                                            }
+                                            else{
+                                                echo '<option>' . $row[1] . '</option>';
+                                            }
                                         }
                                     ?>
                                 </optgroup>
@@ -135,7 +159,12 @@
                                     <?php
                                         $resultQuery = mysqli_query($link, "SELECT * FROM worlds WHERE location = 'Europe'");
                                         while ($row = mysqli_fetch_array($resultQuery)){
-                                            echo '<option>' . $row[1] . '</option>';
+                                            if($row[0] == $user->world->uid){
+                                                echo '<option selected data-subtext="' . $row[3] . 'x ~ ' . $row[4] . 'x ~ ' . $row[5] . 'x ~ ' . $row[7] . 'x ~ ' . $row[8] . 'x">' . $row[1] . '</option>';
+                                            }
+                                            else{
+                                                echo '<option data-subtext="' . $row[3] . 'x ~ ' . $row[4] . 'x ~ ' . $row[5] . 'x ~ ' . $row[7] . 'x ~ ' . $row[8] . 'x">' . $row[1] . '</option>';
+                                            }
                                         }
                                     ?>
                                 </optgroup>
@@ -143,12 +172,17 @@
                                     <?php
                                         $resultQuery = mysqli_query($link, "SELECT * FROM worlds WHERE location = 'North America'");
                                         while ($row = mysqli_fetch_array($resultQuery)){
-                                            echo '<option>' . $row[1] . '</option>';
+                                            if($row[0] == $user->world->uid){
+                                                echo '<option selected data-subtext="' . $row[3] . 'x ~ ' . $row[4] . 'x ~ ' . $row[5] . 'x ~ ' . $row[7] . 'x ~ ' . $row[8] . 'x">' . $row[1] . '</option>';
+                                            }
+                                            else{
+                                                echo '<option data-subtext="' . $row[3] . 'x ~ ' . $row[4] . 'x ~ ' . $row[5] . 'x ~ ' . $row[7] . 'x ~ ' . $row[8] . 'x">' . $row[1] . '</option>';
+                                            }
                                         }
                                     ?>
                                 </optgroup>
                             </select>
-                            <i><small id="vocationField" class="form-text text-muted">Select your main world.</small></i>
+                            <i><small id="vocationField" class="form-text text-muted">Select your main world. (Exp ~ Skills ~ Mana ~ Magic ~ Loot).</small></i>
                         </div>
                         <div class="form-group">
                             <span class="fa fa-star" style="margin-right: 4px"></span><label for="vocation">Favorite Vocation</label>
@@ -157,7 +191,12 @@
                                     <?php
                                         $resultQuery = mysqli_query($link, "SELECT uid, class, name FROM vocations WHERE class = 'No Vocation'");
                                         while ($row = mysqli_fetch_array($resultQuery)){
-                                            echo '<option>' . $row[2] . '</option>';
+                                            if($row[0] == $user->vocation->uid){
+                                                echo '<option selected>' . $row[2] . '</option>';
+                                            }
+                                            else{
+                                                echo '<option>' . $row[2] . '</option>';
+                                            }
                                         }
                                     ?>
                                 </optgroup>
@@ -165,7 +204,12 @@
                                     <?php
                                         $resultQuery = mysqli_query($link, "SELECT uid, class, name FROM vocations WHERE class = 'Not Promoted'");
                                         while ($row = mysqli_fetch_array($resultQuery)){
-                                            echo '<option>' . $row[2] . '</option>';
+                                            if($row[0] == $user->vocation->uid){
+                                                echo '<option selected>' . $row[2] . '</option>';
+                                            }
+                                            else{
+                                                echo '<option>' . $row[2] . '</option>';
+                                            }
                                         }
                                     ?>
                                 </optgroup>
@@ -173,12 +217,22 @@
                                     <?php
                                         $resultQuery = mysqli_query($link, "SELECT uid, class, name FROM vocations WHERE class = 'Promoted'");
                                         while ($row = mysqli_fetch_array($resultQuery)){
-                                            echo '<option>' . $row[2] . '</option>';
+                                            if($row[0] == $user->vocation->uid){
+                                                echo '<option selected>' . $row[2] . '</option>';
+                                            }
+                                            else{
+                                                echo '<option>' . $row[2] . '</option>';
+                                            }
                                         }
                                     ?>
                                 </optgroup>
                             </select>
                             <i><small id="vocationField" class="form-text text-muted">Select your favorite vocation.</small></i>
+                        </div>
+                        <div class="form-group">
+                            <span class="fa fa-picture-o" style="margin-right: 4px"></span><label for="avatar_image">Avatar Image</label>
+                            <input type="text" class="form-control" name="avatar_image" id="avatar_image" aria-describedby="avatar_imageField" maxlength="20" minlength="3" disabled placeholder="Upload your Image">
+                            <i><small id="avatar_imageField" class="form-text text-muted">Upload your avatar image.</small></i>
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-success" style="margin: 5px"><span class="fa fa-check" style="margin-right: 8px"></span>Confirm Changes</button>
